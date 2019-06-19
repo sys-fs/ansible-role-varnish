@@ -13,7 +13,7 @@ services:
   - docker
 
 install:
-  - pip install ansible=="$ANSIBLE" molecule docker
+  - pip install ansible=="$ANSIBLE" molecule docker 'testinfra>=3'
 
 script:
   - molecule test
