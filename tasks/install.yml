@@ -12,7 +12,7 @@
 
 - name: Enable Varnish repo
   apt_repository:
-    repo: 'deb {{ varnish_repo_name }}/{{ ansible_distribution }}/ {{ ansible_distribution_release }} main'
+    repo: 'deb {{ varnish_repo_name }}/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} main'
 
 - name: Install Varnish
   apt:
