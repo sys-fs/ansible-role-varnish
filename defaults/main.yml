@@ -3,4 +3,4 @@
 varnish_version: 6.2
 varnish_listen_address: ':80'
 varnish_admin_listen_address: 'localhost:6082'
-varnish_storage_backend: 'default,256m'
+varnish_storage_backend: 'malloc,256m'
