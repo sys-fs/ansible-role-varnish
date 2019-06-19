@@ -6,5 +6,7 @@
     daemon_reload: True
     state: restarted
 
-- name: Reload VCL
-  command: varnishreload
+- name: Reload Varnish
+  service:
+    name: varnish
+    state: reloaded
