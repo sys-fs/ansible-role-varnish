@@ -1,0 +1,19 @@
+---
+- name: Ensure ca-certificates and apt-transport-https are present
+  apt:
+    name:
+      - ca-certificates
+      - apt-transport-https
+    update_cache: true
+
+- name: Import Varnish key
+  apt_key:
+    url: '{{ varnish_repo_name }}/gpgkey'
+
+- name: Enable Varnish repo
+  apt_repository:
+    repo: 'deb {{ varnish_repo_name }}/{{ ansible_distribution }}/ {{ ansible_distribution_release }} main'
+
+- name: Install Varnish
+  apt:
+    name: varnish

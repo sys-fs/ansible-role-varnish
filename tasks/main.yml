@@ -1,0 +1,12 @@
+---
+# tasks file for ansible-role-php-fpm
+- name: Set Varnish repo name
+  set_fact:
+    varnish_repo_name: 'https://packagecloud.io/varnishcache/varnish{{ varnish_version | replace("," "") }}'
+
+- include_tasks: install.yml
+  tags:
+    - varnish_install
+- include_tasks: configure.yml
+  tags:
+    - varnish_configure

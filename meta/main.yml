@@ -1,0 +1,28 @@
+---
+galaxy_info:
+  author: Thomas Mannay
+  role_name: varnish
+  description: This role installs Varnish from the official repository on Debian and Ubuntu.
+
+  license: MIT
+
+  platforms:
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+
+  min_ansible_version: 2.6
+
+  galaxy_tags:
+    - varnish
+    - ubuntu
+    - debian
+    - system
+    - web
+
+dependencies: []

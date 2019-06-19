@@ -1,0 +1,26 @@
+---
+- name: Configure Varnish service
+  template:
+    src: customexec.conf.j2
+    dest: /etc/systemd/system/varnish.service.d/customexec.conf
+  notify:
+    - Restart Varnish
+
+- name: Create Varnish secret
+  command: dd if=/dev/random of=/etc/varnish/secret count=1
+  args:
+    creates: /etc/varnish/secret
+
+- name: Set permissions on Varnish secret
+  file:
+    path: /etc/varnish/secret
+    mode: 0400
+    owner: root
+    group: root
+
+- name: Add custom VCL
+  template:
+    src: '{{ varnish_vcl }}'
+    dest: /etc/varnish/default.vcl
+  notify: Reload VCL
+  when: varnish_vcl is defined
