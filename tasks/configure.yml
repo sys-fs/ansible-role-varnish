@@ -11,8 +11,7 @@
   file:
     path: /lib/systemd/system/varnish.service
     state: absent
-  when: _service is changed
-  when: ansible_distribution_release == 'jessie'
+  when: _service is changed and ansible_distribution_release == 'jessie'
 
 - name: Create Varnish unit file
   template:
