@@ -1,31 +1,8 @@
 ---
-- name: Check if Varnish service is Ansible managed
-  lineinfile:
-    path: /lib/systemd/system/varnish.service
-    line: '# Ansible managed'
-  check_mode: true
-  register: _service
-  when: ansible_distribution_release == 'jessie'
-
-- name: Remove default Varnish unit file
-  file:
-    path: /lib/systemd/system/varnish.service
-    state: absent
-  when: _service is changed and ansible_distribution_release == 'jessie'
-
-- name: Create Varnish unit file
-  template:
-    src: varnish.service.j2
-    dest: /lib/systemd/system/varnish.service
-  notify:
-    - Restart Varnish
-  when: ansible_distribution_release == 'jessie'
-
 - name: Create /etc/systemd/system/varnish.service.d
   file:
     path: /etc/systemd/system/varnish.service.d
     state: directory
-  when: ansible_distribution_release != 'jessie'
 
 - name: Configure Varnish service
   template:
@@ -33,7 +10,6 @@
     dest: /etc/systemd/system/varnish.service.d/customexec.conf
   notify:
     - Restart Varnish
-  when: ansible_distribution_release != 'jessie'
 
 - name: Create Varnish secret
   command: dd if=/dev/random of=/etc/varnish/secret count=1
