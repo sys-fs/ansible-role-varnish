@@ -1,4 +1,9 @@
 ---
+- name: Create /etc/systemd/system/varnish.service.d
+  file:
+    path: /etc/systemd/system/varnish.service.d
+    state: directory
+
 - name: Configure Varnish service
   template:
     src: customexec.conf.j2
