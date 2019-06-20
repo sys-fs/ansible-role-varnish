@@ -14,7 +14,6 @@ def test_service(host):
     service = host.service('varnish')
 
     assert service.is_running
-    assert service.is_enabled
 
 
 def test_secret(host):
