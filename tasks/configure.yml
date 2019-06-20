@@ -29,3 +29,9 @@
     dest: /etc/varnish/default.vcl
   notify: Reload Varnish
   when: varnish_vcl is defined
+
+- name: Ensure Varnish service is enabled and running
+  service:
+    name: varnish
+    enabled: True
+    state: started
