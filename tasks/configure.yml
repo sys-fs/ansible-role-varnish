@@ -31,7 +31,7 @@
 
 - name: Add custom VCL
   template:
-    src: '{{ varnish_vcl }}'
+    src: '{{ varnish_vcl_template }}'
     dest: /etc/varnish/default.vcl
   notify: Reload Varnish
   when: varnish_vcl is defined

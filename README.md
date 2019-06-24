@@ -24,9 +24,15 @@ The address that Varnish will listen on for frontend connections.
 
 The address that Varnish's admin console will listen on.
 
-    varnish_storage_backend: 'default,256m'
+    varnish_storage_backend: 'malloc,256m'
 
 The storage backend to use.
+
+	# varnish_vcl_template: example.vcl.j2
+
+Custom VCL template to use. If left unset the default VCL will be deployed. The
+template should be located in a subdirectory called `templates`, located within
+your playbook root.
 
 Example Playbook
 ----------------
