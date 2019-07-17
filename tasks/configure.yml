@@ -34,4 +34,4 @@
     src: '{{ varnish_vcl_template }}'
     dest: /etc/varnish/default.vcl
   notify: Reload Varnish
-  when: varnish_vcl is defined
+  when: varnish_vcl_template is defined
